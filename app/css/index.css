@@ -1,0 +1,510 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #222;
+  color: white;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 24px;
+}
+
+pre {
+  white-space: pre-wrap;
+  margin: 0px;
+}
+
+select {
+  font-size: 24px;
+  background-color: #323232;
+  color: white;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .scrolling-content {
+  padding-top: 80px;
+}
+
+#loading {
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+}
+
+#loading-app-logo {
+  width: 500px;
+  height: 100px;
+}
+
+#app {
+  display: none;
+}
+
+#app-sticky-header {
+  background-color: #222;
+}
+
+#app-sticky-header-row {
+  display: flex;
+}
+
+#app-content {
+  display: block;
+}
+
+#app-logo {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  float: right;
+  margin-right: 1em;
+}
+
+#crew-selector{
+  width: 10em;
+}
+
+#score-selector{
+  width: 10em;
+}
+
+#score-info {
+  color: #aaa;
+  padding: 0.5em;
+}
+
+#main-tab-buttons {
+  display: flex;
+  margin-left: 0.5em;
+}
+
+#main-controls-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+  height: 2em;
+  margin-right: 0.5em;
+}
+
+.tab-button {
+  color: #b1b0b0;
+  background-color: #323232;
+  font-size: 24px;
+  float: left;
+  height: 100%;
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 16px;
+  transition: 0.3s;
+  margin-right: 0.5em;
+  opacity: 0.5;
+}
+
+.extra-control {
+  background-color: #444;
+  height: 100%;
+  vertical-align:auto;
+}
+
+#extra-control-bpm-reset {
+  color: #fff;
+  background-color: #222;
+  font-size: 24px;
+  height: 100%;
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+}
+
+#extra-control-bpm-reset:hover {
+  color: #ffc400;
+}
+
+#extra-control-bpm-reset:active {
+  color: #ff0101;
+}
+
+#extra-control-bpm-container {
+  background-color: #222;
+  margin-right: 1em;
+}
+
+#extra-control-play-button {
+  background-color: #347a2e;
+  border: 1px solid #00bb00;
+}
+
+#extra-control-play-button:hover {
+  background-color: #00b900;
+}
+
+#extra-control-play-button.disabled {
+  opacity: 0.1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+#extra-control-stop-button {
+  background-color: #b75757;
+  border: 1px solid #ff0000;
+}
+
+#extra-control-stop-button:hover {
+  background-color: #ff0000;
+}
+
+#extra-control-stop-button.disabled {
+  opacity: 0.1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tab-button:hover {
+  border: 1px solid #777;
+  color: black;
+  opacity: 1;
+}
+
+.tab-button.active {
+  color: black;
+  border: 1px solid white;
+  opacity: 1;
+}
+
+.tab-button-content {
+  pointer-events: none;
+}
+
+#score-minimap {
+  display: block;
+  background-color: #171717;
+  border: 1px solid #777;
+}
+
+.score-minimap-section {
+  display: inline-block;
+  border: 1px solid black;
+  height: 32px;
+  cursor: pointer;
+}
+
+.score-minimap-section.playing {
+  cursor: default;
+}
+
+.score-minimap-active-section{
+  border: 4px solid red;
+}
+
+.tab-content {
+  display: none;
+  border: 1px solid #777;
+  padding: 0.5em;
+}
+
+#score-tab {
+}
+
+#score-tab-content {
+  display: flex;
+}
+
+#score-instruments-container {
+  display: flex;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#score-instruments-container-header {
+  margin-bottom: 0.5em;
+}
+
+#score-scrolling-container {
+  margin-top: 0.5em;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#score-scrolling-content {
+  display: flex;
+}
+
+.section-block-full {
+  background-color: #171717;
+  border: 1px solid #777;
+  margin-bottom: 1em;
+  padding: 0.5em;
+}
+
+.section-block-simple {
+  background-color: #171717;
+  border: 1px solid #777;
+  margin: 0;
+  padding: 0;
+}
+
+.play-button {
+  background-color: #4b4b4b;
+  border: 1px solid #909090;
+  outline: none;
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+  transition: 0.3s;
+}
+
+.play-button:hover {
+  background-color: #006f1c;
+  border: 1px solid #00ff00;
+}
+
+.play-button.active {
+  background-color: #b75757;
+  border: 1px solid #ff0000;
+}
+
+.play-button.active:hover {
+  background-color: #ff0000;
+}
+
+.play-button.disabled {
+  opacity: 0.1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.play-button-icon {
+  width: 50px;
+  height: 26px;
+  content: url("../img/play-icon.svg");
+}
+
+.play-button-icon.active {
+  content: url("../img/stop-icon.svg");
+}
+
+.loop-button {
+  background-color: #4b4b4b;
+  border: 1px solid #909090;
+  outline: none;
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+  transition: 0.3s;
+}
+
+.loop-button-icon {
+  width: 50px;
+  height: 26px;
+  content: url("../img/loop-icon.svg");
+}
+
+.loop-button-icon.active {
+  content: url("../img/stop-icon.svg");
+}
+
+.loop-button:hover {
+  background-color: #006f1c;
+  border: 1px solid #00ff00;
+}
+
+.loop-button.active {
+  background-color: #b75757;
+  border: 1px solid #ff0000;
+}
+
+.loop-button.active:hover {
+  background-color: #ff0000;
+}
+
+.loop-button.disabled {
+  opacity: 0.1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.section-header-container {
+  display: flex;
+}
+
+.section-header {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  border: 1px solid #777;
+}
+
+.section-header-item {
+  height: 32px;
+}
+
+.section-content {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+.section-instrument-list {
+  display: inline-block;
+  width: 50px;
+}
+
+.section-instrument-row {
+  background-color: #22222255;
+  height: 48px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.section-instrument-icon {
+  cursor: pointer;
+  height: 43px;
+  width: 43px;
+  padding: 5px;
+  margin-right: 1em;
+}
+
+.section-instrument-icon:hover {
+  border: 1px solid white;
+}
+
+.section-instrument-icon:active {
+  border: 2px solid #52aa74;
+}
+
+.section-track-list {
+  display: inline-block;
+  width: 100%;
+}
+
+.section-track-row {
+  background-color: #22222255;
+  height: 48px;
+  width: 100%;
+}
+
+.section-track-16th {
+  display: inline-block;
+  background-color: #222;
+  cursor: default;
+  height: 90%;
+  margin: 0px;
+  font-size: 32px;
+  font-weight: bolder;
+  text-align: center;
+  overflow: hidden;
+}
+
+.section-track-16th.note-active {
+  color: red;
+  border: 2px solid red;
+}
+
+.muted {
+  opacity: 0.1;
+}
+
+.solo {
+  opacity: 1 !important;
+  background-color: #7a2828;
+  border: 2px solid #7a2828;
+}
+
+.bar-start {
+  background-color: #7a2828;
+}
+
+.beat-start {
+  background-color: #3c2222;
+}
+
+.eighth-note-start {
+  background-color: #2a2a2a;
+}
+
+.instrument-info {
+  display: flex;
+  background-color: #323232;
+  margin-bottom: 1em;
+  height: 32px;
+  align-items: center;
+}
+
+.instrument-samples-container {
+  display: flex;
+}
+
+.instrument-id {
+  color: #8f8f8f;
+  cursor: default;
+  font-weight: bold;
+  margin: 1em;
+}
+
+.instrument-icon {
+  height: 32px;
+  width: 32px;
+  margin-right: 1em;
+}
+
+.instrument-volume {
+  margin-right: 2em;
+}
+
+.instrument-volume-icon {
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  margin-right: 1em;
+}
+
+.instrument-volume-icon:hover {
+  border: 1px solid #52aa74;
+}
+
+.instrument-volume-icon:active {
+  border: 1px solid #ffffff;
+}
+
+.instrument-name {
+  cursor: default;
+  width: 6em;
+  margin-right: 1em;
+}
+
+.instrument-sample {
+  cursor: pointer;
+  font-size: 24px;
+  background-color: #494949;
+  color: white;
+  border: 1px solid #7c7c7c;
+  height: 32px;
+  width: 32px;
+}
+
+.instrument-sample:hover {
+  background-color: #387650;
+  color: white;
+  border: 1px solid #52aa74;
+}
+
+.instrument-sample:active {
+  background-color: #57b77c;
+  color: white;
+  border: 1px solid #65d38f;
+}

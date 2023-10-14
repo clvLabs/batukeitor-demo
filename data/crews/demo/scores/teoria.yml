@@ -1,0 +1,51 @@
+# Batukeitor score
+name: Teoría
+
+sections:
+
+  redondas:
+    name: Redondas
+    color: "#006000"
+    tracks:
+      #   "1---2---3---4---"
+      S1: "X               "
+
+  blancas:
+    name: Blancas
+    color: "#004000"
+    tracks:
+      #   "1---2---3---4---"
+      S2: "X       X       "
+
+  negras:
+    name: Negras
+    color: "#c3a012"
+    tracks:
+      #   "1---2---3---4---"
+      S3: "X   X   X   X   "
+
+  corcheas:
+    name: Corcheas
+    color: "#006e6e"
+    tracks:
+      #   "1---2---3---4---"
+      CX: "X - X - X - X - "
+
+  semicorcheas:
+    name: Semicorcheas
+    color: "#004a4a"
+    tracks:
+      #   "1---2---3---4---"
+      CH: "X---X---X---X---"
+
+  mezclado:
+    name: Mezclado
+    color: "#793100"
+    tracks:
+      #   "1---2---3---4---"
+      CH: "X---X---X---X---"
+      CX: "X - X - X - X - "
+      S3: "X   X   X   X   "
+      S2: "X       X       "
+      S1: "X               "
+

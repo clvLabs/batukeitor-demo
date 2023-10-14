@@ -1,0 +1,71 @@
+# Batukeitor score
+# From: https://www.youtube.com/watch?v=xQ6Lr1CqbfU
+name: Samba Reggae
+
+bpm: 95
+score:
+  intro
+  base base base base
+  intro base base base
+  intro base base base
+  intro
+  fin
+
+sections:
+
+  intro:
+    name: Intro
+    color: "#c3a012"
+    tracks:
+      #   "1---2---3---4---1---2---3---4---"
+      DD: "                                "
+      AP: "                                "
+      CH: "                                "
+      AG: "                                "
+      CC: "                                "
+      CV: "                                "
+      TB: "                                "
+      RP: " XX  XX          XXX  X         "
+      CX: "X   X   X  X  X X     X         "
+      S3: "X   X   X  X  X X     X XXXXXXXX"
+      S2: "X   X   X  X  X X     X         "
+      S1: "X   X   X  X  X X     X         "
+
+
+  base:
+    name: Base
+    color: "#004000"
+    tracks:
+      #   "1---2---3---4---""
+      DD: "                "
+      AP: "                "
+      CH: "                "
+      AG: "                "
+      CC: "                "
+      CV: "                "
+      TB: "                "
+      RP: " XXX  X   XX  X "
+      CX: "--X---X---X---X-"
+      S3: "  X XXXXXXXXX   "
+      S2: "    X       X   "
+      S1: "X       X       "
+
+
+  fin:
+    name: Fin
+    color: "#AA0000"
+    timeSignature: 2/4
+    tracks:
+      #   "1---2---"
+      DD: "        "
+      AP: "        "
+      CH: "        "
+      AG: "        "
+      CC: "        "
+      CV: "        "
+      TB: "        "
+      RP: "X       "
+      CX: "X       "
+      S3: "X       "
+      S2: "X       "
+      S1: "X       "

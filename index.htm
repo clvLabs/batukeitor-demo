@@ -1,0 +1,113 @@
+<head>
+  <meta charset="utf-8">
+  <title>Batukeitor</title>
+  <link rel="icon" type="image/x-icon" href="./app/img/favicon.png">
+  <!-- <script type="text/javascript" src="./app/js/3rdparty/livejs/live.js"></script> -->
+  <script src="./app/js/3rdparty/jquery/jquery-3.7.1.min.js"></script>
+  <script src="./app/js/3rdparty/js-yaml/js-yaml.min.js"></script>
+  <script src="./app/js/3rdparty/audiocontext-monkeypatch/AudioContextMonkeyPatch.js"></script>
+  <script type="module" src="./app/js/index.js"></script>
+  <link href="./app/css/index.css" rel="stylesheet"/>
+  <meta http-equiv="Cache-control" content="no-cache, no-store">
+</head>
+
+<body>
+  <!-- ------------------------------------------------------- LOADING -->
+  <div id="loading">
+    <br/><br/>
+    <img id="loading-app-logo" src="./app/img/batukeitor-logo.svg">
+    <br/><br/>
+    <img src="./app/img/loading.gif">
+    <br/><br/>
+    Loading...
+  </div>
+
+  <!-- ------------------------------------------------------- APP -->
+  <div id="app">
+
+    <!-- ------------------------------------------------------- APP HEADER -->
+    <div id="app-header">
+      <a href="https://github.com/clvLabs/batukeitor">
+        <img id="app-logo" src="./app/img/batukeitor-logo.svg">
+      </a>
+
+      <select id="crew-selector"></select>
+      <select id="score-selector"></select>
+
+      <div id="score-info"></div>
+
+    </div>
+
+    <!-- ------------------------------------------------------- APP STICKY HEADER -->
+    <div id="app-sticky-header">
+
+      <div id="app-sticky-header-row">
+        <!-- ------------------------------------------------------- TAB BUTTONS -->
+        <div id="main-tab-buttons">
+          <button id="tab-button-score" class="tab-button">
+            <span class="tab-button-content">
+              <img src="./app/img/player-icon.svg">
+            </span>
+          </button>
+          <button id="tab-button-sections" class="tab-button">
+            <span class="tab-button-content">
+              <img src="./app/img/score-icon.svg">
+            </span>
+          </button>
+          <button id="tab-button-instruments" class="tab-button">
+            <span class="tab-button-content">
+              <img src="./app/img/instruments-tab-icon.svg" width="24px">
+            </span>
+          </button>
+        </div>
+
+        <!-- ------------------------------------------------------- MAIN CONTROLS -->
+        <div id="main-controls-div">
+          <div id="extra-control-bpm-container" class="extra-control">
+            <button id="extra-control-bpm-reset">BPM:</button>
+            <span id="current-bpm"></span>
+            <input id="extra-control-bpm-slider" type="range" min="10" max="200" value="100" class="slider">
+          </div>
+
+          <button id="extra-control-play-button" class="extra-control">
+            <span id="extra-control-play-icon">
+              <img src="./app/img/play-icon.svg" width="32px">
+            </span>
+          </button>
+
+          <button id="extra-control-stop-button" class="extra-control disabled">
+            <span id="extra-control-stop-icon">
+              <img src="./app/img/stop-icon.svg" width="32px">
+            </span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ------------------------------------------------------- FULL SCORE VIEW -->
+      <div id="score-minimap"></div>
+
+    </div>
+
+    <!-- ------------------------------------------------------- APP CONTENT -->
+    <div id="app-content" class="scrolling-content">
+
+      <!-- ------------------------------------------------------- TAB: Score -->
+      <div id="score-tab" class="tab-content">
+        <div id="score-tab-content"></div>
+      </div>
+
+      <!-- ------------------------------------------------------- TAB: Sections -->
+      <div id="sections-tab" class="tab-content">
+        <div id="sections-tab-content"></div>
+      </div>
+
+      <!-- ------------------------------------------------------- TAB: Instruments -->
+      <div id="instruments-tab" class="tab-content">
+        <div id="instruments-tab-content"></div>
+      </div>
+
+    </div>
+
+  </div>
+</body>

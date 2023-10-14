@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8mm"
+   height="8mm"
+   viewBox="0 0 8 8"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)"
+   sodipodi:docname="play-icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#e0e0e0"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="false"
+     inkscape:deskcolor="#404040"
+     inkscape:document-units="mm"
+     inkscape:zoom="14.510954"
+     inkscape:cx="6.5123217"
+     inkscape:cy="20.915234"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffffff;stroke-width:0.999999"
+       d="M 4.3062681,5.8901351 C 6.106761,4.8506312 7.577604,3.9979221 7.574808,3.9952452 7.5683125,3.9895089 1.0075232,0.20188964 1.0031283,0.20188964 c -0.00209,0 -0.003631,1.70912766 -0.003631,3.79805926 v 3.7980594 l 0.016439,-0.00956 c 0.00899,-0.00572 1.4895466,-0.8594396 3.2900395,-1.8989437 z"
+       id="path127"
+       sodipodi:nodetypes="ccsscccc" />
+  </g>
+</svg>
