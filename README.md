@@ -13,4 +13,4 @@ Clone this repo or download the `zip` file and unpack it into any web-hosted fol
 
 After that, you will have to customize your crew info and create some scores.
 
-Please see the [Batukeitor docs](https://github.com/clvLabs/batukeitor/tree/master/resources/docs/index.md) for more info.
+Please see the [Batukeitor docs](https://github.com/clvLabs/batukeitor/tree/master/resources/docs/README.md) for more info.
