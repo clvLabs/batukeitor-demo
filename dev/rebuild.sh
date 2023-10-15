@@ -8,11 +8,12 @@ ZIP_URL_SUFFIX=/archive/master.zip
 
 function download () {
   PROJECT="$1"
+  FOLDER="$2"
   ZIP_URL="${ZIP_URL_PREFIX}${PROJECT}${ZIP_URL_SUFFIX}"
   curl -sLo "${PROJECT}.zip" "${ZIP_URL}"
   unzip -q "${PROJECT}.zip"
   rm "${PROJECT}.zip"
-  mv "${PROJECT}-master" "${PROJECT}"
+  mv "${PROJECT}-master" "${FOLDER}"
 }
 
 # ----------------------------------------------------
@@ -25,20 +26,20 @@ cd "${TEMPFOLDER}"
 # ----------------------------------------------------
 echo "Downloading/extracting repo ZIPs"
 
-download batukeitor
-download batukeitor-instruments
-download batukeitor-crew-demo
+download batukeitor             new-site
+download batukeitor-instruments instruments
+download batukeitor-crew-demo   crew-demo
 
 # ----------------------------------------------------
 echo "Building basic site structure"
 
-mv batukeitor-instruments batukeitor/data/instruments
-mv batukeitor-crew-demo batukeitor/data/crews/demo
+mv instruments new-site/data/instruments
+mv crew-demo   new-site/data/crews/demo
 
 # ----------------------------------------------------
 echo "Making crews index"
 
-CREW_INDEX=batukeitor/data/crews/index.yml
+CREW_INDEX=new-site/data/crews/index.yml
 touch "${CREW_INDEX}"
 echo "# Batukeitor crews" >> "${CREW_INDEX}"
 echo ""                   >> "${CREW_INDEX}"
@@ -60,26 +61,30 @@ find -type f -name "*sample.yml" -exec rm {} \;
 find -type f -name ".gitignore" -exec rm {} \;
 
 # Main repo resources folder
-rm -rf batukeitor/resources
+rm -rf new-site/resources
+
+# (possible) own dev/ folder in Batukeitor
+rm -rf new-site/dev
 
 # Move current project's files so they will "get back" :)
-mv ${REPO_LOCAL_PATH}/.gitignore batukeitor
-mv ${REPO_LOCAL_PATH}/README.md batukeitor
-mv ${REPO_LOCAL_PATH}/LICENSE.md batukeitor
+cp ${REPO_LOCAL_PATH}/.editorconfig  new-site
+cp ${REPO_LOCAL_PATH}/.gitignore     new-site
+cp ${REPO_LOCAL_PATH}/README.md      new-site
+cp ${REPO_LOCAL_PATH}/LICENSE.md     new-site
 
 # ----------------------------------------------------
 echo "Updating demo project"
 
 echo "- Deleting old files"
-rm ${REPO_LOCAL_PATH}/* > /dev/null
-rm ${REPO_LOCAL_PATH}/.* > /dev/null
-rm -rf ${REPO_LOCAL_PATH}/app > /dev/null
-rm -rf ${REPO_LOCAL_PATH}/data > /dev/null
-rm -rf ${REPO_LOCAL_PATH}/dev > /dev/null
+rm -f "${REPO_LOCAL_PATH}/*"
+rm -f "${REPO_LOCAL_PATH}/.*"
+rm -rf "${REPO_LOCAL_PATH}/app"
+rm -rf "${REPO_LOCAL_PATH}/data"
 
 echo "- Copying new files"
-cp -r batukeitor/* ${REPO_LOCAL_PATH}
-cp -r batukeitor/.* ${REPO_LOCAL_PATH}
+cp -r new-site/*   ${REPO_LOCAL_PATH}
+echo "- Copying new files II"
+cp -r new-site/.*  ${REPO_LOCAL_PATH}
 
 # ----------------------------------------------------
 echo "Checking git status"
