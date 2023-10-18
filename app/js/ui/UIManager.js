@@ -35,16 +35,23 @@ export class UIManager extends EventTarget {
 
 
     $("#app").show();
+
     $("#crew-selector").on("input", this._onCrewSelectorInput.bind(this));
     $("#score-selector").on("input", this._onScoreSelectorInput.bind(this));
+
     $("#tab-button-score").on("click", { tab: "score-tab"}, this._onTabSelected.bind(this));
     $("#tab-button-sections").on("click", { tab: "sections-tab"}, this._onTabSelected.bind(this));
     $("#tab-button-instruments").on("click", { tab: "instruments-tab"}, this._onTabSelected.bind(this));
+    $("#tab-button-editor").on("click", { tab: "editor-tab"}, this._onTabSelected.bind(this));
+
     $("#extra-control-bpm-slider").on("input", this._onBPMSliderInput.bind(this));
     $("#extra-control-bpm-reset").on("click", this._onBPMResetClicked.bind(this));
     $("#extra-control-stop-button").on("click", this._onExtraStopButton.bind(this));
     $("#extra-control-play-button").on("click", this._onExtraPlayButton.bind(this));
 
+    $("#editor-tab-apply-button").on("click", this._onEditorApplyButton.bind(this));
+    $("#editor-tab-clipboard-button").on("click", this._onEditorClipboardButton.bind(this));
+    $("#editor-tab-reload-button").on("click", this._onEditorReloadButton.bind(this));
 
     $("#tab-button-score").addClass("active");
     $(`#score-tab`).show();
@@ -189,6 +196,7 @@ export class UIManager extends EventTarget {
     $("#score-minimap").html("");
     $("#score-tab-content").html(`Cannot load score<br/>${errorMsg}`);
     $("#sections-tab-content").html(`Cannot load score<br/>${errorMsg}`);
+    $("#editor-error-message").html(`Cannot load score<br/>${errorMsg}`);
   }
 
   setScore(score) {
@@ -246,6 +254,10 @@ export class UIManager extends EventTarget {
 
     // Update instrument states
     this._updateInstrumentStates();
+
+    // Editor -------------------------------------------------------
+    $("#editor-error-message").text("");
+    $("#score-editor-textbox").val(score.getYmlRawScore());
   }
 
   _updateScoreInfo() {
@@ -570,7 +582,8 @@ export class UIManager extends EventTarget {
     this.dispatchEvent(new CustomEvent("load",
       {detail: {
         scoreId: $("#score-selector option:selected").val()
-      }}));
+      }}
+    ));
   }
 
   _onTabSelected(e) {
@@ -706,12 +719,13 @@ export class UIManager extends EventTarget {
     this.playLoop = false;
 
     this.dispatchEvent(new CustomEvent("play",
-    {detail: {
-      mode: this.playMode,
-      score: this.score,
-      scoreSectionIndex: 0,
-      loop: this.playLoop,
-    }}));
+      {detail: {
+        mode: this.playMode,
+        score: this.score,
+        scoreSectionIndex: 0,
+        loop: this.playLoop,
+      }}
+    ));
 
     this._updatePlayButtons(playButton, playIcon);
     playButton.addClass("disabled");
@@ -728,12 +742,13 @@ export class UIManager extends EventTarget {
       this.dispatchEvent(new Event("stop"));
     } else {
       this.dispatchEvent(new CustomEvent("play",
-      {detail: {
-        mode: this.playMode,
-        score: this.score,
-        section: section,
-        loop: this.playLoop,
-      }}));
+        {detail: {
+          mode: this.playMode,
+          score: this.score,
+          section: section,
+          loop: this.playLoop,
+        }}
+      ));
     }
 
     this._updatePlayButtons(playButton, playIcon);
@@ -750,12 +765,13 @@ export class UIManager extends EventTarget {
       this.dispatchEvent(new Event("stop"));
     } else {
       this.dispatchEvent(new CustomEvent("play",
-      {detail: {
-        mode: this.playMode,
-        score: this.score,
-        section: section,
-        loop: this.playLoop,
-      }}));
+        {detail: {
+          mode: this.playMode,
+          score: this.score,
+          section: section,
+          loop: this.playLoop,
+        }}
+      ));
     }
 
     this._updatePlayButtons(loopButton, loopIcon);
@@ -773,12 +789,13 @@ export class UIManager extends EventTarget {
       this.dispatchEvent(new Event("stop"));
     } else {
       this.dispatchEvent(new CustomEvent("play",
-      {detail: {
-        mode: this.playMode,
-        score: this.score,
-        scoreSectionIndex: scoreSectionIndex,
-        loop: this.playLoop,
-      }}));
+        {detail: {
+          mode: this.playMode,
+          score: this.score,
+          scoreSectionIndex: scoreSectionIndex,
+          loop: this.playLoop,
+        }}
+      ));
     }
 
     this._updatePlayButtons(playButton, playIcon);
@@ -796,12 +813,13 @@ export class UIManager extends EventTarget {
       this.dispatchEvent(new Event("stop"));
     } else {
       this.dispatchEvent(new CustomEvent("play",
-      {detail: {
-        mode: this.playMode,
-        score: this.score,
-        scoreSectionIndex: scoreSectionIndex,
-        loop: this.playLoop,
-      }}));
+        {detail: {
+          mode: this.playMode,
+          score: this.score,
+          scoreSectionIndex: scoreSectionIndex,
+          loop: this.playLoop,
+        }}
+      ));
     }
 
     this._updatePlayButtons(loopButton, loopIcon);
@@ -844,6 +862,22 @@ export class UIManager extends EventTarget {
         volume: e.target.value,
       }}
     ));
+  }
+
+  _onEditorApplyButton(e) {
+    this.dispatchEvent(new CustomEvent("parse",
+      {detail: {
+        text: $("#score-editor-textbox").val()
+      }}
+    ));
+  }
+
+  _onEditorClipboardButton(e) {
+    navigator.clipboard.writeText($("#score-editor-textbox").val());
+  }
+
+  _onEditorReloadButton(e) {
+    this._onScoreSelectorInput();
   }
 
   // From: https://www.jqueryscript.net/text/reverse-text-background-color.html

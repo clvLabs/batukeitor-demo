@@ -7,7 +7,7 @@ html {
 
 body {
   background-color: #222;
-  color: white;
+  color: #ffffff;
   font-family: "Lucida Console", "Courier New", monospace;
   font-size: 24px;
 }
@@ -20,7 +20,7 @@ pre {
 select {
   font-size: 24px;
   background-color: #323232;
-  color: white;
+  color: #ffffff;
 }
 
 .sticky {
@@ -151,6 +151,10 @@ select {
   background-color: #00b900;
 }
 
+#extra-control-play-button:active {
+  border: 1px solid #ffffff;
+}
+
 #extra-control-play-button.disabled {
   opacity: 0.1;
   cursor: not-allowed;
@@ -166,6 +170,10 @@ select {
   background-color: #ff0000;
 }
 
+#extra-control-stop-button:active {
+  border: 1px solid #ffffff;
+}
+
 #extra-control-stop-button.disabled {
   opacity: 0.1;
   cursor: not-allowed;
@@ -178,9 +186,13 @@ select {
   opacity: 1;
 }
 
+.tab-button:active {
+  border: 1px solid #ffffff;
+}
+
 .tab-button.active {
   color: black;
-  border: 1px solid white;
+  border: 1px solid #ffffff;
   opacity: 1;
 }
 
@@ -272,6 +284,10 @@ select {
   border: 1px solid #00ff00;
 }
 
+.play-button:active {
+  border: 1px solid #ffffff;
+}
+
 .play-button.active {
   background-color: #b75757;
   border: 1px solid #ff0000;
@@ -322,13 +338,17 @@ select {
   border: 1px solid #00ff00;
 }
 
+.loop-button:active {
+  border: 1px solid #ffffff;
+}
+
 .loop-button.active {
   background-color: #b75757;
   border: 1px solid #ff0000;
 }
 
-.loop-button.active:hover {
-  background-color: #ff0000;
+.loop-button.active:active {
+  border: 1px solid #ffffff;
 }
 
 .loop-button.disabled {
@@ -380,11 +400,11 @@ select {
 }
 
 .section-instrument-icon:hover {
-  border: 1px solid white;
+  border: 2px solid #52aa74;
 }
 
 .section-instrument-icon:active {
-  border: 2px solid #52aa74;
+  border: 1px solid #ffffff;
 }
 
 .section-track-list {
@@ -491,7 +511,7 @@ select {
   cursor: pointer;
   font-size: 24px;
   background-color: #494949;
-  color: white;
+  color: #ffffff;
   border: 1px solid #7c7c7c;
   height: 32px;
   width: 32px;
@@ -499,12 +519,69 @@ select {
 
 .instrument-sample:hover {
   background-color: #387650;
-  color: white;
+  color: #ffffff;
   border: 1px solid #52aa74;
 }
 
 .instrument-sample:active {
   background-color: #57b77c;
-  color: white;
+  color: #ffffff;
   border: 1px solid #65d38f;
+}
+
+.score-editor {
+  background-color: #222;
+  color: #ffffff;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 24px;
+  border: 1px solid #7c7c7c;
+
+  min-width:50px;
+  max-width:100%;
+  min-height:50px;
+  max-height:80%;
+  height:80%;
+  width:100%;
+}
+
+#editor-tab-apply-button {
+  position: absolute;
+  top: 19%;
+  left: 74%;
+  width: 7%;
+  height: 50px;
+}
+
+#editor-tab-clipboard-button {
+  position: absolute;
+  top: 19%;
+  left: 82%;
+  width: 7%;
+  height: 50px;
+}
+
+#editor-tab-reload-button {
+  position: absolute;
+  top: 19%;
+  left: 90%;
+  width: 7%;
+  height: 50px;
+}
+
+.editor-button {
+  background-color: #347a2e;
+  border: 1px solid #00bb00;
+}
+
+.editor-button:hover {
+  background-color: #00b900;
+}
+
+.editor-button:active {
+  border: 1px solid #ffffff;
+}
+
+.editor-icon {
+  width: 32px;
+  height: 32px;
 }

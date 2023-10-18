@@ -58,6 +58,11 @@
               <img src="./app/img/instruments-tab-icon.svg">
             </span>
           </button>
+          <button id="tab-button-editor" class="tab-button">
+            <span class="tab-button-content">
+              <img src="./app/img/editor-tab-icon.svg">
+            </span>
+          </button>
         </div>
 
         <!-- ------------------------------------------------------- MAIN CONTROLS -->
@@ -104,6 +109,33 @@
       <!-- ------------------------------------------------------- TAB: Instruments -->
       <div id="instruments-tab" class="tab-content">
         <div id="instruments-tab-content"></div>
+      </div>
+
+      <!-- ------------------------------------------------------- TAB: Editor -->
+      <div id="editor-tab" class="tab-content">
+        <div id="editor-tab-content">
+          <div id="editor-error-message"></div>
+          <textarea id="score-editor-textbox" wrap="off" class="score-editor"></textarea>
+
+          <button id="editor-tab-apply-button" class="editor-button">
+            <span id="editor-tab-apply-icon" class="editor-icon">
+              <img src="./app/img/apply-icon.svg">
+            </span>
+          </button>
+
+          <button id="editor-tab-clipboard-button" class="editor-button">
+            <span id="editor-tab-clipboard-icon" class="editor-icon">
+              <img src="./app/img/clipboard-icon.svg">
+            </span>
+          </button>
+
+          <button id="editor-tab-reload-button" class="editor-button">
+            <span id="editor-tab-reload-icon" class="editor-icon">
+              <img src="./app/img/reload-icon.svg">
+            </span>
+          </button>
+
+        </div>
       </div>
 
     </div>

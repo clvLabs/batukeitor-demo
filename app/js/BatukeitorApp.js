@@ -24,6 +24,7 @@ export class BatukeitorApp {
 
     this.uiMgr = new UIManager(this.crewMgr);
     this.uiMgr.addEventListener("load", this.onUIManagerLoad.bind(this));
+    this.uiMgr.addEventListener("parse", this.onUIManagerParse.bind(this));
     this.uiMgr.addEventListener("play", this.onUIManagerPlay.bind(this));
     this.uiMgr.addEventListener("stop", this.onUIManagerStop.bind(this));
     this.uiMgr.addEventListener("setBPM", this.onUIManagerSetBPM.bind(this));
@@ -107,6 +108,10 @@ export class BatukeitorApp {
 
   onUIManagerLoad(e) {
     this.score.load(this.crew.id, e.detail.scoreId);
+  }
+
+  onUIManagerParse(e) {
+    this.score.parse(e.detail.text);
   }
 
   onUIManagerPlay(e) {

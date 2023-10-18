@@ -10,6 +10,7 @@ export class Score extends EventTarget {
 
   _reset() {
     this.url = undefined;
+    this._ymlRawScore = undefined;
     this._ymlScore = undefined;
     this.loaded = false;
     this.name = undefined;
@@ -38,6 +39,17 @@ export class Score extends EventTarget {
     }).fail(function(e) {
       self._error(`[Score] ERROR loading ${url} (${e.statusText})`);
     });
+  }
+
+  parse(text) {
+    this._reset();
+    this.url = "Manual edit";
+
+    try {
+      this._parseScore(text);
+    } catch (error) {
+      this._error(`[Score] ERROR processing manual score text: ${error}`);
+    }
   }
 
   getDurationMinutes() {
@@ -107,12 +119,23 @@ export class Score extends EventTarget {
   }
 
 
+  getYmlRawScore() {
+    return this._ymlRawScore;
+  }
+
+  getYmlScoreObject() {
+    return this._ymlScore;
+  }
+
+
   _error(msg) {
     this.dispatchEvent(new CustomEvent('error',
       {detail: { error: msg }}));
   }
 
   _parseScore(ymlData) {
+    this._ymlRawScore = ymlData;
+
     try {
       this._ymlScore = jsyaml.load(ymlData);
     } catch (error) {
