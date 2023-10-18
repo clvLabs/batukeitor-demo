@@ -22,6 +22,7 @@ export class Score extends EventTarget {
     this.num16ths = undefined;
     this.numBars = undefined;
     this.numBeats = undefined;
+    this._lut = undefined;
   }
 
   load(crewId, scoreId) {
@@ -72,50 +73,22 @@ export class Score extends EventTarget {
 
 
   getScoreSectionBy16thIndex(current16th) {
-    for (const section of this.scoreSections) {
-      if (current16th < section.num16ths)
-        return section;
-      else
-        current16th -= section.num16ths;
-    }
-    return undefined;
+    return this._lut.by16th[current16th].section;
   }
 
 
   getScoreSectionIndexBy16thIndex(current16th) {
-    for (var index=0; index < this.scoreSections.length; index++) {
-      const section = this.scoreSections[index];
-
-      if (current16th < section.num16ths) {
-        return index;
-      } else {
-        current16th -= section.num16ths;
-      }
-    };
-
-    return undefined;
+    return this._lut.by16th[current16th].sectionIndex;
   }
 
 
   get16thScoreSectionOffset(current16th) {
-    for (const section of this.scoreSections) {
-      if (current16th < section.num16ths)
-        return current16th;
-      else
-        current16th -= section.num16ths;
-    }
-    return undefined;
+    return this._lut.by16th[current16th].sectionOffset;
   }
 
 
   getScoreSection16thOffset(sectionIndex) {
-    var offset = 0;
-
-    for (var index=0; index < sectionIndex; index++) {
-      offset += this.scoreSections[index].num16ths;
-    };
-
-    return offset;
+    return this._lut.bySectionIndex[sectionIndex].sectionOffset;
   }
 
 
@@ -189,7 +162,34 @@ export class Score extends EventTarget {
         return;
       }
 
+    this._buildLUT();
+
     this.dispatchEvent(new Event('ready'));
+  }
+
+  _buildLUT() {
+    this._lut = {
+      by16th: {},
+      bySectionIndex: {},
+    };
+
+    var _last16th = 0;
+    for (var index=0; index < this.scoreSections.length; index++) {
+      const section = this.scoreSections[index];
+
+      this._lut.bySectionIndex[index] = {
+        sectionOffset: _last16th,
+      };
+
+      for (var _16thIndex=0; _16thIndex < section.num16ths; _16thIndex++) {
+        this._lut.by16th[_last16th+_16thIndex] = {
+          section: section,
+          sectionIndex: index,
+          sectionOffset: _16thIndex,
+        };
+      };
+      _last16th += section.num16ths;
+    };
   }
 
   _getScoreURL(crewId, scoreId) {
