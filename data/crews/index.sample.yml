@@ -1,0 +1,11 @@
+# Batukeitor crews
+#
+# Once a crew repo is cloned here,
+#  add its folder name to the "crews" list:
+#
+
+crews:
+  #- sample-crew-1
+  #- sample-crew-2
+
+# defaultCrew: sample-crew-1
