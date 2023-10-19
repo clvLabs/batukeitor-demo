@@ -7,8 +7,19 @@ export class Section {
     this.METRONOME_INSTRUMENT_ID = "MT";
 
     this.id = id;
-    this.name = ymlData.name;
-    this.color = ymlData.color;
+
+    if (ymlData.name)
+      this.name = ymlData.name;
+    else
+      this.name = this.id;
+
+    if (ymlData.color)
+      this.color = ymlData.color;
+    else
+      this.color = "";
+
+    if (this.color[0] == "#")
+      this.color = this.color.substring(1);
 
     if (ymlData.timeSignature)
       this.timeSignature = new TimeSignature(ymlData.timeSignature);
@@ -19,9 +30,6 @@ export class Section {
     this.tracks = {};
     var _tmpTracks = {};
 
-    if (this.color[0] == "#")
-    this.color = this.color.substring(1);
-
     // Get max section length looking at all tracks
     var maxSectionLen = 0;
     for (const trackId in ymlData.tracks) {
@@ -30,13 +38,24 @@ export class Section {
         maxSectionLen = ymlTrackNotes.length;
     }
 
-    // Add score tracks to temporary list
-    for (const trackId in ymlData.tracks) {
-      const ymlTrackNotes = ymlData.tracks[trackId].padEnd(maxSectionLen, " ");
-      const instrument = this.instrumentMgr.get(trackId);
-      _tmpTracks[trackId] = new Track(
-        trackId,
-        ymlTrackNotes,
+    // Add score tracks to temporary list keeping the order in instrumentMgr, fill blanks
+    for (const instrumentId in this.instrumentMgr.all()) {
+
+      // Skip metronome (not supposed to be in scores, added later)
+      if (instrumentId == this.METRONOME_INSTRUMENT_ID)
+        continue;
+
+      var trackNotes;
+      if (instrumentId in ymlData.tracks) {
+        trackNotes = ymlData.tracks[instrumentId].padEnd(maxSectionLen, " ");
+      } else {
+        trackNotes = " ".padEnd(maxSectionLen, " ");
+      }
+
+      const instrument = this.instrumentMgr.get(instrumentId);
+      _tmpTracks[instrumentId] = new Track(
+        instrumentId,
+        trackNotes,
         this.timeSignature,
         instrument);
     }

@@ -5,6 +5,12 @@ export class Score extends EventTarget {
     super();
     this.DEFAULT_BPM = 90;
     this.instrumentMgr = instrumentMgr;
+    this._rainbow = [
+      "0000A0", "00A0A0", "A000A0", "00A000", "A0A000", "A00000", "A0A0A0",
+      "000080", "008080", "800080", "008000", "808000", "800000", "808080",
+      "C0C0C0",
+      "FF00FF", "00FFFF", "FFFF00", "0000FF", "00FF00", "FF0000",
+    ];
     this._reset();
   }
 
@@ -126,9 +132,14 @@ export class Score extends EventTarget {
     this.bpm = this.originalbpm;
 
     this.sections = {};
+    var index = 0;
     for (const sectionId in this._ymlScore.sections) {
       const _ymlSectionData = this._ymlScore.sections[sectionId];
-      this.sections[sectionId] = new Section(sectionId, _ymlSectionData, this.instrumentMgr);
+      const newSection = new Section(sectionId, _ymlSectionData, this.instrumentMgr);
+      if (newSection.color == "")
+        newSection.color = this._getRainbowColor(index);
+      this.sections[sectionId] = newSection;
+      index++;
     }
 
     this.scoreStr = this._ymlScore.score;
@@ -194,5 +205,9 @@ export class Score extends EventTarget {
 
   _getScoreURL(crewId, scoreId) {
     return `./data/crews/${crewId}/scores/${scoreId}.yml?ts=${Date.now()}`;
+  }
+
+  _getRainbowColor(index) {
+    return this._rainbow[index % this._rainbow.length];
   }
 }
