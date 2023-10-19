@@ -70,10 +70,10 @@ instruments:
   RP:
     name: "Repenique"
     samples:
-      "X": "RP_Baqueta_Centro.mp3"
-      "x": "RP_Baqueta_Aro.mp3"
-      "-": "RP_Palma_Abierta.mp3"
-      ".": "RP_Palma_Cerrada.mp3"
+      "X": "RP_Drumstick_Center.mp3"
+      "x": "RP_Drumstick_Edge.mp3"
+      "-": "RP_Open_palm.mp3"
+      ".": "RP_Closed_palm.mp3"
 
   CX:
     name: "Caixa"

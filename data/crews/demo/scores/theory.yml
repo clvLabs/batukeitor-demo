@@ -1,45 +1,45 @@
 # Batukeitor score
-name: Teoría
+name: Basic Theory
 
 sections:
 
-  redondas:
-    name: Redondas
+  whole-notes:
+    name: Whole notes
     color: "#006000"
     tracks:
       #   "1---2---3---4---"
       S1: "X               "
 
-  blancas:
-    name: Blancas
+  half-notes:
+    name: Half notes
     color: "#004000"
     tracks:
       #   "1---2---3---4---"
       S2: "X       X       "
 
-  negras:
-    name: Negras
+  quarter-notes:
+    name: Quarter notes
     color: "#c3a012"
     tracks:
       #   "1---2---3---4---"
       S3: "X   X   X   X   "
 
-  corcheas:
-    name: Corcheas
+  eight-notes:
+    name: Eight notes
     color: "#006e6e"
     tracks:
       #   "1---2---3---4---"
       CX: "X - X - X - X - "
 
-  semicorcheas:
-    name: Semicorcheas
+  sixteenth-notes:
+    name: Sixteenth notes
     color: "#004a4a"
     tracks:
       #   "1---2---3---4---"
       CH: "X---X---X---X---"
 
-  mezclado:
-    name: Mezclado
+  all-mixed:
+    name: All mixed
     color: "#793100"
     tracks:
       #   "1---2---3---4---"

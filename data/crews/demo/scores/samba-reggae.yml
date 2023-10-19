@@ -9,7 +9,7 @@ score:
   intro base base base
   intro base base base
   intro
-  fin
+  end
 
 sections:
 
@@ -51,8 +51,8 @@ sections:
       S1: "X       X       "
 
 
-  fin:
-    name: Fin
+  end:
+    name: End
     color: "#AA0000"
     timeSignature: 2/4
     tracks:

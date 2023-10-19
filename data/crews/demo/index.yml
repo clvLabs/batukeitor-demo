@@ -1,6 +1,6 @@
 # Batukeitor crew file
-name: Demo
+name: Demo crew
 scores:
-  demo1: "Demo score"
+  sample: "Sample score"
   samba-reggae: "Samba Reggae"
-  teoria: "Teoría"
+  theory: "Basic Theory"

@@ -333,11 +333,12 @@ export class UIManager extends EventTarget {
     instrumentSamplesElm.appendTo(instrumentElm);
 
     for (const sampleId in instrument.samples) {
-      const sampleFileName = instrument.samples[sampleId];
+      const sampleFileName = instrument.samples[sampleId].fileName;
 
       const sampleElm = $("<button>", {
         id: `instrument-${instrument.id}-sample-${sampleId}`,
         class: "instrument-sample",
+        title: sampleFileName,
       });
       sampleElm.text(sampleId);
       sampleElm.on("click", { instrumentId: instrumentId, sampleId: sampleId}, this._onInstrumentSamplePlay.bind(this));
