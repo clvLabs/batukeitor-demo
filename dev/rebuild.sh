@@ -54,9 +54,6 @@ echo "Removing unneeded files"
 # All *.md files
 find -type f -name "*md" -exec rm {} \;
 
-# All *.sample.yml
-find -type f -name "*sample.yml" -exec rm {} \;
-
 # All .gitignore
 find -type f -name ".gitignore" -exec rm {} \;
 
