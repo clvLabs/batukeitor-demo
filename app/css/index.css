@@ -544,31 +544,33 @@ select {
   width:100%;
 }
 
-#editor-tab-apply-button {
+#editor-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
   position: absolute;
-  top: 19%;
-  left: 74%;
-  width: 7%;
+  top: 200px;
+  right: 50px;
+  width: 400px;
   height: 50px;
+}
+
+#editor-tab-apply-button {
+  width: 150px;
 }
 
 #editor-tab-clipboard-button {
-  position: absolute;
-  top: 19%;
-  left: 82%;
-  width: 7%;
-  height: 50px;
+  width: 100px;
 }
 
 #editor-tab-reload-button {
-  position: absolute;
-  top: 19%;
-  left: 90%;
-  width: 7%;
-  height: 50px;
+  width: 100px;
 }
 
 .editor-button {
+  float: right;
+  position: relative;
+  margin-left: 10px;
   background-color: #347a2e;
   border: 1px solid #00bb00;
 }

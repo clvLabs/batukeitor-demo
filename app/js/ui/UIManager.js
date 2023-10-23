@@ -319,7 +319,7 @@ export class UIManager extends EventTarget {
       class: "instrument-volume slider",
       type: "range",
       min: -30,
-      max: 10,
+      max: 15,
       value: 0,
     });
     instrumentElm.on("input", { instrumentId: instrumentId }, this._onInstrumentVolumeSliderInput.bind(this));
