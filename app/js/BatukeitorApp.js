@@ -27,6 +27,7 @@ export class BatukeitorApp {
     this.uiMgr.addEventListener("parse", this.onUIManagerParse.bind(this));
     this.uiMgr.addEventListener("play", this.onUIManagerPlay.bind(this));
     this.uiMgr.addEventListener("stop", this.onUIManagerStop.bind(this));
+    this.uiMgr.addEventListener("jumpTo", this.onUIManagerJumpTo.bind(this));
     this.uiMgr.addEventListener("setBPM", this.onUIManagerSetBPM.bind(this));
     this.uiMgr.addEventListener("playSample", this.onUIManagerPlaySample.bind(this));
     this.uiMgr.addEventListener("changeInstrumentVolume", this.onUIManagerChangeInstrumentVolume.bind(this));
@@ -126,6 +127,10 @@ export class BatukeitorApp {
 
   onUIManagerStop() {
     this.audioMgr.stop();
+  }
+
+  onUIManagerJumpTo(e) {
+    this.audioMgr.jumpTo(e.detail.index);
   }
 
   onUIManagerSetBPM(e) {

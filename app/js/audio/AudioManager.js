@@ -75,6 +75,10 @@ export class AudioManager extends EventTarget {
     }, this.scheduleAheadTime * 1000);
   }
 
+  jumpTo(_16thIndex) {
+    this.current16th = _16thIndex;
+  }
+
   _play() {
     if (!this.audioContext) {
       this.audioContext = new AudioContext();

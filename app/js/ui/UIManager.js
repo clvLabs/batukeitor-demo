@@ -827,12 +827,22 @@ export class UIManager extends EventTarget {
   }
 
   _onMinimapSectionClick(e) {
-
-    if ($(e.target).hasClass("playing"))
-      return;
-
     const scoreSectionIndex = e.data.scoreSectionIndex;
     const section = this.score.scoreSections[scoreSectionIndex];
+    const sectionOffset = this.score.getScoreSection16thOffset(scoreSectionIndex);
+
+    this._onTabSelected({
+      target: $("#tab-button-score"),
+      data: { tab: "score-tab" },
+    });
+
+    if ($(e.target).hasClass("playing")) {
+      this.dispatchEvent(new CustomEvent("jumpTo",
+        {detail: {
+          index: sectionOffset,
+        }}
+      ));
+    }
 
     const sectionElm = $(`#score-section-${scoreSectionIndex}-${section.id}`);
 
