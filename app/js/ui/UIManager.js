@@ -233,7 +233,7 @@ export class UIManager extends EventTarget {
     });
     sectionHeaderElm.appendTo(instrumentsContainerElm);
 
-    this._buildTrackInstrumentsUI("score", this.instrumentMgr.all(), true).appendTo(instrumentsContainerElm);
+    this._buildTrackInstrumentsUI("score", this.score.loadedTracks, true).appendTo(instrumentsContainerElm);
 
     const scrollingContainerElm = $("<div>", {
       id: "score-scrolling-container",
@@ -473,7 +473,7 @@ export class UIManager extends EventTarget {
 
     // Instrument list
     if (fullModule) {
-      this._buildTrackInstrumentsUI(`section-${section.id}`, section.tracks).appendTo(sectionContentElm);
+      this._buildTrackInstrumentsUI(`section-${section.id}`, section.loadedTracks).appendTo(sectionContentElm);
     }
 
     // Track list
@@ -483,9 +483,14 @@ export class UIManager extends EventTarget {
     });
     sectionTracksElm.appendTo(sectionContentElm);
 
-    Object.values(section.tracks).forEach(track => {
+    var trackList = section.loadedTracks;
+    if (!fullModule)
+      trackList = this.score.loadedTracks;
+
+    for (const trackId of trackList) {
+      const track = section.tracks[trackId];
       this._buildTrackUI(sectionElmId, section, track, fullModule).appendTo(sectionTracksElm);
-    });
+    }
 
     return sectionElm;
   }
@@ -503,7 +508,7 @@ export class UIManager extends EventTarget {
       playHeaderElm.appendTo(sectionInstrumentsElm);
     }
 
-    for (const trackId in tracks) {
+    for (const trackId of tracks) {
       const instrument = this.instrumentMgr.get(trackId);
 
       const instrumentRowElm = $("<div>", {

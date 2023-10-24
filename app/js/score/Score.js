@@ -28,6 +28,7 @@ export class Score extends EventTarget {
     this.num16ths = undefined;
     this.numBars = undefined;
     this.numBeats = undefined;
+    this.loadedTracks = undefined;
     this._lut = undefined;
   }
 
@@ -132,14 +133,29 @@ export class Score extends EventTarget {
     this.bpm = this.originalbpm;
 
     this.sections = {};
+    const _tmpLoadedTracks = new Set();
+
     var index = 0;
     for (const sectionId in this._ymlScore.sections) {
       const _ymlSectionData = this._ymlScore.sections[sectionId];
       const newSection = new Section(sectionId, _ymlSectionData, this.instrumentMgr);
+
       if (newSection.color == "")
         newSection.color = this._getRainbowColor(index);
+
       this.sections[sectionId] = newSection;
+
+      for (const _instrumentId of newSection.loadedTracks)
+        _tmpLoadedTracks.add(_instrumentId);
+
       index++;
+    }
+
+    // Build loadedTracks list in the same order as instrumentMgr.all()
+    this.loadedTracks = [];
+    for (const instrumentId in this.instrumentMgr.all()) {
+      if (_tmpLoadedTracks.has(instrumentId))
+        this.loadedTracks.push(instrumentId);
     }
 
     this.scoreStr = this._ymlScore.score;

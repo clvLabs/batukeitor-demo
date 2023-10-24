@@ -2,11 +2,12 @@ import * as Tone from "https://cdn.skypack.dev/tone";
 import {Sample} from "./Sample.js"
 
 export class Instrument extends EventTarget {
-  constructor(instrumentId, ymlInstrumentData) {
+  constructor(instrumentPack, instrumentId, ymlInstrumentData) {
     super();
-    this.BASE_URL = "./data/instruments";
+    this.instrumentPack = instrumentPack;
     this.id = instrumentId;
     this.name = ymlInstrumentData.name;
+    this.BASE_URL = `./data/instruments/${instrumentPack}`;
     this.iconURL = `${this.BASE_URL}/img/${this.id}.png`;
     this.samples = {};
     this._muted = false;

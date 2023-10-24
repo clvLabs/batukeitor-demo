@@ -1,3 +1,4 @@
+import {Crew} from "./Crew.js"
 
 export class CrewManager extends EventTarget {
   constructor() {
@@ -63,7 +64,7 @@ export class CrewManager extends EventTarget {
       const self = this;
       $.get(this._getCrewDataURL(crewId)).done(function(data) {
         try {
-          self._parseCrewData(crewId, data);
+          self._list[crewId] = new Crew(crewId, data);
         } catch (error) {
           self._error(`[Crews] ERROR processing crew [${crewId}] data file: ${error}`);
         }
@@ -76,22 +77,6 @@ export class CrewManager extends EventTarget {
           self.dispatchEvent(new Event('ready'));
       });
     }
-  }
-
-  _parseCrewData(crewId, ymlData) {
-    var _ymlCrewData;
-    try {
-      _ymlCrewData = jsyaml.load(ymlData);
-    } catch (error) {
-      this._error(`[Crews] ERROR: Invalid data in crew [${crewId}] data file: ${error}`);
-      return;
-    }
-
-    this._list[crewId] = {
-      id: crewId,
-      name: _ymlCrewData.name,
-      scores: _ymlCrewData.scores,
-    };
   }
 
   _getCrewListURL() {

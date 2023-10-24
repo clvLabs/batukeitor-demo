@@ -3,12 +3,14 @@ import {Instrument} from "./Instrument.js"
 export class InstrumentManager extends EventTarget {
   constructor() {
     super();
-    this.BASE_URL = "./data/instruments";
     this._list = {}
     this._soloInstruments = [];
+    this._crew = undefined;
   }
 
-  init() {
+  init(crew) {
+    this._crew = crew;
+
     const self = this;
     $.get(this._getInstrumentListURL()).done(function(data) {
       try {
@@ -81,14 +83,14 @@ export class InstrumentManager extends EventTarget {
     for (const instrumentId in _ymlInstrumentList.instruments)
     {
       const instrumentData = _ymlInstrumentList.instruments[instrumentId];
-      this._list[instrumentId] = new Instrument(instrumentId, instrumentData);
+      this._list[instrumentId] = new Instrument(this._crew.instrumentPack, instrumentId, instrumentData);
     }
 
     this.dispatchEvent(new Event('ready'));
   }
 
   _getInstrumentListURL() {
-    return `${this.BASE_URL}/instruments.yml?ts=${Date.now()}`;
+    return `./data/instruments/${this._crew.instrumentPack}/instruments.yml?ts=${Date.now()}`;
   }
 
 }

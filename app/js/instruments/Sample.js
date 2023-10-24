@@ -3,8 +3,8 @@ import * as Tone from "https://cdn.skypack.dev/tone";
 export class Sample extends EventTarget {
   constructor(instrument, id, fileName) {
     super();
-    this.BASE_URL = "./data/instruments";
     this.instrument = instrument;
+    this.BASE_URL = instrument.BASE_URL;
     this.id = id;
     this.fileName = fileName;
     this.url = `${this.BASE_URL}/samples/${fileName}`;

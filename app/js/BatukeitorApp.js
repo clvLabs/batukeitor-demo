@@ -39,7 +39,6 @@ export class BatukeitorApp {
 
   run() {
     this.crewMgr.init();
-    this.instrumentMgr.init();
   }
 
   onAudioManagerReady() {
@@ -89,9 +88,11 @@ export class BatukeitorApp {
     this.crew = this.crewMgr.get(crewId);
     if (this.crew == null) {
       alert(`[Crews] Crew not found: ${crewId}`);
-    } else {
-      this.uiMgr.init(crewId);
+      return;
     }
+
+    this.instrumentMgr.init(this.crew);
+    this.uiMgr.init(crewId);
   }
 
   onCrewManagerError(e) {

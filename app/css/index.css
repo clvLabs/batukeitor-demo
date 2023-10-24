@@ -71,14 +71,6 @@ select {
   margin-right: 1em;
 }
 
-#crew-selector{
-  width: 10em;
-}
-
-#score-selector{
-  width: 10em;
-}
-
 #score-info {
   color: #aaa;
   padding: 0.5em;
@@ -469,6 +461,7 @@ select {
   color: #8f8f8f;
   cursor: default;
   font-weight: bold;
+  width: 3em;
   margin: 1em;
 }
 
@@ -499,7 +492,7 @@ select {
 
 .instrument-name {
   cursor: default;
-  width: 6em;
+  width: 10em;
   margin-right: 1em;
 }
 

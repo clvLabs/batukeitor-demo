@@ -28,6 +28,7 @@ export class Section {
 
     this.instrumentMgr = instrumentMgr;
     this.tracks = {};
+    const _tmpLoadedTracks = new Set();
     var _tmpTracks = {};
 
     // Get max section length looking at all tracks
@@ -47,6 +48,7 @@ export class Section {
 
       var trackNotes;
       if (instrumentId in ymlData.tracks) {
+        _tmpLoadedTracks.add(instrumentId)
         trackNotes = ymlData.tracks[instrumentId].padEnd(maxSectionLen, " ");
       } else {
         trackNotes = " ".padEnd(maxSectionLen, " ");
@@ -74,6 +76,7 @@ export class Section {
     });
 
     // Add metronome track to "definitive" list
+    _tmpLoadedTracks.add(this.METRONOME_INSTRUMENT_ID)
     this.tracks[this.METRONOME_INSTRUMENT_ID] = new Track(
       this.METRONOME_INSTRUMENT_ID,
       this.timeSignature.getMetronomeBarDisplayStr().repeat(this.numBars),
@@ -85,6 +88,12 @@ export class Section {
       this.tracks[track.id] = track;
     });
 
+    // Build loadedTracks list in the same order as instrumentMgr.all()
+    this.loadedTracks = [];
+    for (const instrumentId in this.instrumentMgr.all()) {
+      if (_tmpLoadedTracks.has(instrumentId))
+        this.loadedTracks.push(instrumentId);
+    }
   }
 
   getMetronomeDisplayStr() {
