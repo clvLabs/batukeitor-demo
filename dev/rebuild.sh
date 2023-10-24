@@ -33,7 +33,7 @@ download batukeitor-crew-demo   crew-demo
 # ----------------------------------------------------
 echo "Building basic site structure"
 
-mv instruments new-site/data/instruments
+mv instruments new-site/data/instruments/default
 mv crew-demo   new-site/data/crews/demo
 
 # ----------------------------------------------------
