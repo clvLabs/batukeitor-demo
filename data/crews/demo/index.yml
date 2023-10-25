@@ -1,5 +1,6 @@
 # Batukeitor crew file
 name: Demo crew
+instrumentPack: default
 scores:
   sample: "Sample score"
   samba-reggae: "Samba Reggae"

@@ -18,13 +18,6 @@ sections:
     color: "#c3a012"
     tracks:
       #   "1---2---3---4---1---2---3---4---"
-      DD: "                                "
-      AP: "                                "
-      CH: "                                "
-      AG: "                                "
-      CC: "                                "
-      CV: "                                "
-      TB: "                                "
       RP: " XX  XX          XXX  X         "
       CX: "X   X   X  X  X X     X         "
       S3: "X   X   X  X  X X     X XXXXXXXX"
@@ -36,14 +29,7 @@ sections:
     name: Base
     color: "#004000"
     tracks:
-      #   "1---2---3---4---""
-      DD: "                "
-      AP: "                "
-      CH: "                "
-      AG: "                "
-      CC: "                "
-      CV: "                "
-      TB: "                "
+      #   "1---2---3---4---"
       RP: " XXX  X   XX  X "
       CX: "--X---X---X---X-"
       S3: "  X XXXXXXXXX   "
@@ -57,13 +43,6 @@ sections:
     timeSignature: 2/4
     tracks:
       #   "1---2---"
-      DD: "        "
-      AP: "        "
-      CH: "        "
-      AG: "        "
-      CC: "        "
-      CV: "        "
-      TB: "        "
       RP: "X       "
       CX: "X       "
       S3: "X       "
