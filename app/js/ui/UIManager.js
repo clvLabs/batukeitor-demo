@@ -82,8 +82,6 @@ export class UIManager extends EventTarget {
       );
 
     }
-
-    this._onScoreSelectorInput();
   }
 
   setInstrumentManager(instrumentMgr, errorMsg) {
@@ -103,6 +101,9 @@ export class UIManager extends EventTarget {
 
     // Mute metronome at startup
     this._muteInstrument(this.instrumentMgr.get("MT"), true);
+
+    // Once instrument manager is set we can load the selected score
+    this._onScoreSelectorInput();
   }
 
   setAudioManagerPlaying(playing) {
