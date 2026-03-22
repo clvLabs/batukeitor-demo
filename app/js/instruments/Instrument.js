@@ -1,4 +1,4 @@
-import * as Tone from "https://cdn.skypack.dev/tone";
+import * as Tone from 'https://cdn.jsdelivr.net/npm/tone@15.1.22/+esm'
 import {Sample} from "./Sample.js"
 
 export class Instrument extends EventTarget {
